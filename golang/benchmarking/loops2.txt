@@ -1,0 +1,21 @@
+goos: darwin
+goarch: amd64
+pkg: interview/golang/benchmarking
+cpu: Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+BenchmarkLoops2/input_size_10-12         	24019981	        56.42 ns/op
+BenchmarkLoops2/input_size_10-12         	21231362	        48.13 ns/op
+BenchmarkLoops2/input_size_10-12         	23804104	        49.39 ns/op
+BenchmarkLoops2/input_size_10-12         	25141096	        46.39 ns/op
+BenchmarkLoops2/input_size_10-12         	24813496	        48.01 ns/op
+BenchmarkLoops2/input_size_100-12        	  348752	      3108 ns/op
+BenchmarkLoops2/input_size_100-12        	  374125	      3170 ns/op
+BenchmarkLoops2/input_size_100-12        	  346629	      3147 ns/op
+BenchmarkLoops2/input_size_100-12        	  372453	      3200 ns/op
+BenchmarkLoops2/input_size_100-12        	  368760	      3158 ns/op
+BenchmarkLoops2/input_size_1000-12       	    4635	    252255 ns/op
+BenchmarkLoops2/input_size_1000-12       	    4525	    246592 ns/op
+BenchmarkLoops2/input_size_1000-12       	    4704	    246108 ns/op
+BenchmarkLoops2/input_size_1000-12       	    4609	    248646 ns/op
+BenchmarkLoops2/input_size_1000-12       	    4644	    247932 ns/op
+PASS
+ok  	interview/golang/benchmarking	19.170s
