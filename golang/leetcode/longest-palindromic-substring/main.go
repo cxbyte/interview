@@ -16,61 +16,54 @@ Output: "bb"
 */
 
 func longestPalindrome(s string) string {
-	var stringLen = len(s)
-	var firstIndex = 0
-	var lastIndex = stringLen - 1
-	var palindrome []string
-	for {
-		for {
-			checkString := s[firstIndex : lastIndex+1]
-			if checkPalindrome(checkString) {
-				palindrome = append(palindrome, checkString)
-			}
+	var finalPalindromeLength = 0
+	var finalPalindrome = ``
+	var lastStringIndex = len(s) - 1
 
-			if lastIndex-firstIndex < 1 {
-				break
-			}
-			lastIndex--
+	if lastStringIndex == 0 {
+		return s
+	}
+
+	for i := 0; i < lastStringIndex; i++ {
+		palindrome := checkPalindrome(s, i, lastStringIndex)
+		palindromeLength := len(palindrome)
+		if palindromeLength > finalPalindromeLength {
+			finalPalindromeLength = palindromeLength
+			finalPalindrome = palindrome
 		}
-		firstIndex++
-		lastIndex = stringLen - 1
-		if lastIndex-firstIndex < 1 {
+	}
+
+	return finalPalindrome
+}
+
+func checkPalindrome(str string, currentIndex int, lastStringIndex int) string {
+	currentChar := str[currentIndex : currentIndex+1]
+	palindrome := currentChar
+	leftIndex := currentIndex - 1
+	rightIndex := currentIndex + 1
+
+	for rightIndex <= lastStringIndex {
+		var nextChar = str[rightIndex : rightIndex+1]
+		if currentChar == nextChar {
+			palindrome = palindrome + nextChar
+			rightIndex++
+		} else {
 			break
 		}
 	}
 
-	if len(palindrome) == 0 {
-		return s[0:1]
-	}
-
-	var longestPalindrome = palindrome[0]
-	for _, p := range palindrome {
-		if len(p) > len(longestPalindrome) {
-			longestPalindrome = p
-		}
-	}
-
-	return longestPalindrome
-}
-
-func checkPalindrome(s string) bool {
-	var stringLen = len(s)
-	if stringLen == 1 {
-		return true
-	}
-	var firstIndex = 0
-	var lastIndex = stringLen - 1
-
-	for {
-		if s[firstIndex:firstIndex+1] != s[lastIndex:lastIndex+1] {
-			return false
+	for leftIndex >= 0 && rightIndex <= lastStringIndex {
+		leftChar := str[leftIndex : leftIndex+1]
+		rightChar := str[rightIndex : rightIndex+1]
+		if leftChar == rightChar {
+			palindrome = str[leftIndex : rightIndex+1]
+		} else {
+			break
 		}
 
-		if lastIndex-firstIndex < 1 {
-			return true
-		}
-
-		lastIndex--
-		firstIndex++
+		leftIndex--
+		rightIndex++
 	}
+
+	return palindrome
 }
